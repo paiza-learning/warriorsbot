@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "start": "node .",
-    "tsc": "tsc",
+    "build": "tsc",
     "watch": "ts-node-dev --respawn src/index.ts"
   },
   "devDependencies": {
