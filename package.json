@@ -1,0 +1,28 @@
+{
+  "name": "warriorsbot",
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "author": "paiza-warriors",
+  "license": "MIT",
+  "scripts": {
+    "start": "node .",
+    "tsc": "tsc",
+    "watch": "ts-node-dev --respawn src/index.ts"
+  },
+  "devDependencies": {
+    "@types/node": "^14.14.9",
+    "@typescript-eslint/eslint-plugin": "^4.8.1",
+    "@typescript-eslint/parser": "^4.8.1",
+    "eslint": "^7.13.0",
+    "eslint-config-prettier": "^6.15.0",
+    "eslint-plugin-prettier": "^3.1.4",
+    "prettier": "^2.2.0",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0",
+    "typescript": "^4.1.2"
+  },
+  "dependencies": {
+    "@slack/events-api": "^2.3.4",
+    "@slack/web-api": "^5.13.0"
+  }
+}
