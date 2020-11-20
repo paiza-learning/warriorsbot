@@ -1,0 +1,9 @@
+version: '3'
+services:
+  warrior:
+    container_name: warrior
+    image: node:12
+    working_dir: /usr/src/app
+    volumes:
+      - ./:/usr/src/app:cached
+    command: [yarn, watch]
