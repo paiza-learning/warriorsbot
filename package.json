@@ -7,7 +7,7 @@
   "scripts": {
     "start": "node .",
     "build": "tsc",
-    "watch": "ts-node-dev --respawn src/index.ts",
+    "watch": "nodemon --exec 'npm run lint && ts-node src/index.ts'",
     "lint": "eslint src/*.ts"
   },
   "devDependencies": {
@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "@slack/events-api": "^2.3.4",
-    "@slack/web-api": "^5.13.0"
+    "@slack/web-api": "^5.13.0",
+    "nodemon": "^2.0.6"
   }
 }
