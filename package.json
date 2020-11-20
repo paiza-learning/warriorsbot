@@ -8,7 +8,7 @@
     "start": "node .",
     "build": "tsc",
     "clean": "rimraf dist/*",
-    "watch": "nodemon --exec 'npm run lint && ts-node src/index.ts'",
+    "watch": "nodemon -L",
     "lint": "eslint src/*.ts"
   },
   "devDependencies": {
