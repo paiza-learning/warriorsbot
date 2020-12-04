@@ -12,13 +12,16 @@ export default class TimePost {
   text: string;
 
   constructor(msg: Message) {
+    const channelObj = msg.channel as TextChannel;
+
     this.author = {
       id: msg.author.id,
-      username: msg.author.username, // TODO: nicknameへの対応
+      username:
+        channelObj.guild.member(msg.author)?.nickname || msg.author.username,
       iconURL: msg.author.displayAvatarURL(),
     };
 
-    this.channel = (msg.channel as TextChannel).name;
+    this.channel = channelObj.name;
     this.text = msg.content;
   }
 
