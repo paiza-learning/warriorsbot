@@ -1,4 +1,7 @@
 import Discord from 'discord.js';
+import { config } from 'dotenv';
+
+config();
 
 const { DISCORD_TOKEN } = process.env;
 const client = new Discord.Client();
