@@ -20,7 +20,6 @@ export default class TimePost {
       iconURL: msg.author.displayAvatarURL(),
     };
 
-    console.log(msg);
     this.text = `${msg.content}\n> **[original post](<${msg.url}>)** <#${channel.id}>`;
   }
 
