@@ -5,8 +5,8 @@ import Discord, { TextChannel, WebhookClient } from 'discord.js';
 import TimePost from './models/time_post';
 import Debug from 'debug';
 
-const debug = Debug('worriors');
-debug('worriros debug mode on.');
+const debug = Debug('warriors');
+debug('warriros debug mode on.');
 
 const {
   DISCORD_TOKEN,
