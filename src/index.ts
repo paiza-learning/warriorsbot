@@ -6,7 +6,7 @@ import TimePost from './models/time_post';
 import Debug from 'debug';
 
 const debug = Debug('warriors');
-debug('warriros debug mode on.');
+debug('warriors debug mode on.');
 
 const {
   DISCORD_TOKEN,
