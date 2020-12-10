@@ -1,12 +1,10 @@
 import { Client, Message, TextChannel, WebhookClient } from 'discord.js';
-
-import Constants from '../../constants';
 import Debug from 'debug';
+import Constants from '../../constants';
 import TimePost from '../../models/time_post';
 
 const debug = Debug('warriors');
 const DiscordConstants = Constants.Discord;
-
 const webhookClient = new WebhookClient(
   DiscordConstants.TIMELINE_ID,
   DiscordConstants.TIMELINE_TOKEN,
