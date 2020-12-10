@@ -1,20 +1,46 @@
-import Discord from 'discord.js';
 import { config } from 'dotenv';
-
 config();
 
-const { DISCORD_TOKEN } = process.env;
-const client = new Discord.Client();
+import Discord, { TextChannel, WebhookClient } from 'discord.js';
+import TimePost from './models/time_post';
+import Debug from 'debug';
 
-function greeting(target: string): void {
-  console.log(`Hello ${target}!`);
-}
+const debug = Debug('warriors');
+debug('warriors debug mode on.');
+
+const {
+  DISCORD_TOKEN,
+  DISCORD_TIMELINE_ID,
+  DISCORD_TIMELINE_TOKEN,
+} = process.env;
+
+const client = new Discord.Client();
+const webhookClient = new WebhookClient(
+  DISCORD_TIMELINE_ID || '',
+  DISCORD_TIMELINE_TOKEN || '',
+);
 
 client.on('ready', () => {
-  greeting('World');
+  debug('ready.');
 });
 
 client.on('message', (msg) => {
+  const channel = msg.channel as TextChannel;
+
+  // TODO: times_*に対する処理
+  if (channel.name.match('times_.+?')) {
+    debug('found timeline.');
+    debug(msg);
+
+    const timePost = new TimePost(msg);
+
+    // timelineにpostする
+    webhookClient
+      .send(timePost.text, timePost.webhookMessageOptions())
+      .then((msg) => debug(msg))
+      .catch((err) => debug(err));
+  }
+
   if (msg.content === '/ping') {
     msg.reply('pong!');
   }
