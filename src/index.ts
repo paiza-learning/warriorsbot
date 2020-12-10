@@ -10,8 +10,8 @@ debug('warriors debug mode on.');
 
 const client = new Discord.Client();
 const webhookClient = new WebhookClient(
-  DiscordConstants.DISCORD_TIMELINE_ID,
-  DiscordConstants.DISCORD_TIMELINE_TOKEN,
+  DiscordConstants.TIMELINE_ID,
+  DiscordConstants.TIMELINE_TOKEN,
 );
 
 client.on('ready', () => {
@@ -40,4 +40,4 @@ client.on('message', (msg) => {
   }
 });
 
-client.login(DiscordConstants.DISCORD_TOKEN);
+client.login(DiscordConstants.BOT_TOKEN);

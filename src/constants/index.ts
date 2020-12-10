@@ -15,20 +15,19 @@ export namespace Constants {
     /**
      * Discord botのtoken
      */
-    export const DISCORD_TOKEN = process.env.DISCORD_TOKEN || '';
+    export const BOT_TOKEN = process.env.DISCORD_BOT_TOKEN || '';
 
     /**
      * TIMELINE投稿先のDISCORDチャンネルID
      * (webhook URLの/区切り後ろから2番目)
      */
-    export const DISCORD_TIMELINE_ID = process.env.DISCORD_TIMELINE_ID || '';
+    export const TIMELINE_ID = process.env.DISCORD_TIMELINE_ID || '';
 
     /**
      * TIMELINE投稿先のDISCORDチャンネルトークン
      * (webhook URLの/区切り後ろから1番目)
      */
-    export const DISCORD_TIMELINE_TOKEN =
-      process.env.DISCORD_TIMELINE_TOKEN || '';
+    export const TIMELINE_TOKEN = process.env.DISCORD_TIMELINE_TOKEN || '';
   }
 }
 
