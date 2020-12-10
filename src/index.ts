@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-config();
+import Constants from './constants';
+const DiscordConstants = Constants.Discord;
 
 import Discord, { TextChannel, WebhookClient } from 'discord.js';
 import TimePost from './models/time_post';
@@ -8,16 +8,10 @@ import Debug from 'debug';
 const debug = Debug('warriors');
 debug('warriors debug mode on.');
 
-const {
-  DISCORD_TOKEN,
-  DISCORD_TIMELINE_ID,
-  DISCORD_TIMELINE_TOKEN,
-} = process.env;
-
 const client = new Discord.Client();
 const webhookClient = new WebhookClient(
-  DISCORD_TIMELINE_ID || '',
-  DISCORD_TIMELINE_TOKEN || '',
+  DiscordConstants.DISCORD_TIMELINE_ID,
+  DiscordConstants.DISCORD_TIMELINE_TOKEN,
 );
 
 client.on('ready', () => {
@@ -46,4 +40,4 @@ client.on('message', (msg) => {
   }
 });
 
-client.login(DISCORD_TOKEN);
+client.login(DiscordConstants.DISCORD_TOKEN);

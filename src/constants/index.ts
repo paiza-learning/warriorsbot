@@ -1,0 +1,35 @@
+import { config } from 'dotenv';
+
+config();
+
+// TODO: 肥大化したら分割する
+
+/**
+ * 定数を一括管理するnamespace
+ */
+export namespace Constants {
+  /**
+   * Discordに関する定数を一括管理するnamespace
+   */
+  export namespace Discord {
+    /**
+     * Discord botのtoken
+     */
+    export const DISCORD_TOKEN = process.env.DISCORD_TOKEN || '';
+
+    /**
+     * TIMELINE投稿先のDISCORDチャンネルID
+     * (webhook URLの/区切り後ろから2番目)
+     */
+    export const DISCORD_TIMELINE_ID = process.env.DISCORD_TIMELINE_ID || '';
+
+    /**
+     * TIMELINE投稿先のDISCORDチャンネルトークン
+     * (webhook URLの/区切り後ろから1番目)
+     */
+    export const DISCORD_TIMELINE_TOKEN =
+      process.env.DISCORD_TIMELINE_TOKEN || '';
+  }
+}
+
+export default Constants;
