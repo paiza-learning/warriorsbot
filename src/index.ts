@@ -1,14 +1,12 @@
-import Constants from './constants';
-const DiscordConstants = Constants.Discord;
-
 import Discord from 'discord.js';
 import Debug from 'debug';
-
 import { Bots } from './models/bots';
+import Constants from './constants';
 
 const debug = Debug('warriors');
 debug('warriors debug mode on.');
 
+const DiscordConstants = Constants.Discord;
 const client = new Discord.Client();
 const timeLineBot = new Bots.TimeLineBot(client);
 
