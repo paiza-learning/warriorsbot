@@ -22,7 +22,7 @@ client.on('message', (msg) => {
   const channel = msg.channel as TextChannel;
 
   // TODO: times_*に対する処理
-  if (channel.name.match('times_.+?')) {
+  if (channel.name.match(DiscordConstants.TIMES_NAME_PATTERN)) {
     debug('found timeline.');
     debug(msg);
 

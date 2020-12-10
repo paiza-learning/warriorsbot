@@ -28,6 +28,8 @@ export namespace Constants {
      * (webhook URLの/区切り後ろから1番目)
      */
     export const TIMELINE_TOKEN = process.env.DISCORD_TIMELINE_TOKEN || '';
+
+    export const TIMES_NAME_PATTERN = new RegExp(/times_.+?/);
   }
 }
 
