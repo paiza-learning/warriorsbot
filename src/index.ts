@@ -1,5 +1,5 @@
-import { config } from 'dotenv';
-config();
+import Constants from './constants';
+const DiscordConstants = Constants.Discord;
 
 import Discord, { TextChannel, WebhookClient } from 'discord.js';
 import TimePost from './models/time_post';
@@ -8,16 +8,10 @@ import Debug from 'debug';
 const debug = Debug('warriors');
 debug('warriors debug mode on.');
 
-const {
-  DISCORD_TOKEN,
-  DISCORD_TIMELINE_ID,
-  DISCORD_TIMELINE_TOKEN,
-} = process.env;
-
 const client = new Discord.Client();
 const webhookClient = new WebhookClient(
-  DISCORD_TIMELINE_ID || '',
-  DISCORD_TIMELINE_TOKEN || '',
+  DiscordConstants.TIMELINE_ID,
+  DiscordConstants.TIMELINE_TOKEN,
 );
 
 client.on('ready', () => {
@@ -28,7 +22,7 @@ client.on('message', (msg) => {
   const channel = msg.channel as TextChannel;
 
   // TODO: times_*に対する処理
-  if (channel.name.match('times_.+?')) {
+  if (channel.name.match(DiscordConstants.TIMES_NAME_PATTERN)) {
     debug('found timeline.');
     debug(msg);
 
@@ -46,4 +40,4 @@ client.on('message', (msg) => {
   }
 });
 
-client.login(DISCORD_TOKEN);
+client.login(DiscordConstants.BOT_TOKEN);
