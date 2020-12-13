@@ -5,7 +5,7 @@ import Constants from '../constants';
 const debug = Debug('warriors');
 const DiscordConstants = Constants.Discord;
 
-export class TimeLinewebhookClient {
+export class TimeLineWebhookClient {
   client: WebhookClient;
 
   constructor() {

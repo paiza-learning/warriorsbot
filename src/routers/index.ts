@@ -1,10 +1,10 @@
 import { TextChannel, Message } from 'discord.js';
 import Constants from '../constants';
 import { Bots } from '../models/bots';
-import { TimeLinewebhookClient } from '../models/webhookClient';
+import { TimeLineWebhookClient } from '../models/webhookClient';
 
 const DiscordConstants = Constants.Discord;
-const timeLineWebhookClient = new TimeLinewebhookClient();
+const timeLineWebhookClient = new TimeLineWebhookClient();
 
 export namespace Router {
   export function MessageRouter(msg: Message) {
