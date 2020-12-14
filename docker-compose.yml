@@ -5,5 +5,9 @@ services:
     image: node:12
     working_dir: /usr/src/app
     volumes:
-      - ./:/usr/src/app:cached
+      - ./:/usr/src/app
+      - /usr/src/app:node_modules
     command: [yarn, watch]
+
+volumes:
+  node_modules:
