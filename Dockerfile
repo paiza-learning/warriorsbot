@@ -18,8 +18,6 @@ FROM node:14 as production
 ENV NODE_ENV=production
 WORKDIR /usr/src/app
 
-RUN npm i -g pm2
-
 COPY package.json .
 COPY yarn.lock .
 
