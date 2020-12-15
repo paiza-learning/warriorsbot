@@ -29,7 +29,14 @@ export namespace Constants {
      */
     export const TIMELINE_TOKEN = process.env.DISCORD_TIMELINE_TOKEN || '';
 
-    export const TIMES_NAME_PATTERN = new RegExp(/times_.+?/);
+    /**
+     * TIMESとして認識するDISCORDチャンネルの正規表現
+     * 本番環境かどうかで返却する正規表現が異なる
+     */
+    export const TIMES_NAME_PATTERN =
+      process.env.NODE_ENV == 'production'
+        ? new RegExp(/^times_.+?(?<!_dev)$/)
+        : new RegExp(/^times_.+?_dev$/);
   }
 }
 
