@@ -20,7 +20,7 @@ export default class TimePost {
       iconURL: msg.author.displayAvatarURL(),
     };
 
-    const linkIconText = channel.topic?.split('\n')[0] || `<#${channel.id}>`;
+    const linkIconText = channel.topic?.split('\n')[0] || channel.name;
     this.text = `[${linkIconText}](<${msg.url}>) ${msg.content}`;
   }
 
