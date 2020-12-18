@@ -20,7 +20,8 @@ export default class TimePost {
       iconURL: msg.author.displayAvatarURL(),
     };
 
-    this.text = `${msg.content}\n> **[original post](<${msg.url}>)** <#${channel.id}>`;
+    const linkIconText = channel.topic || channel.name;
+    this.text = `[${linkIconText}](<${msg.url}>) ${msg.content}`;
   }
 
   webhookMessageOptions(): WebhookMessageOptions {
