@@ -1,4 +1,11 @@
-import { WebhookMessageOptions, Message, TextChannel, MessageAttachment, Collection, FileOptions } from 'discord.js';
+import {
+  WebhookMessageOptions,
+  Message,
+  TextChannel,
+  MessageAttachment,
+  Collection,
+  FileOptions,
+} from 'discord.js';
 
 export interface TimePostAuthor {
   id: string;
@@ -22,7 +29,7 @@ export default class TimePost {
     };
 
     if (msg.attachments) {
-        this.files = this.attachementToFiles(msg.attachments);
+      this.files = this.attachementToFiles(msg.attachments);
     }
 
     const linkIconText = channel.topic?.split('\n')[0] || channel.name;
@@ -39,11 +46,16 @@ export default class TimePost {
     return webhookMessageOptions;
   }
 
-  private attachementToFiles(attachements: Collection<string, MessageAttachment>): FileOptions[] {
-    const files: FileOptions[] = []
-    attachements.forEach(messageAttachement => {
-      files.push({attachment: messageAttachement.url, name: messageAttachement.name} as FileOptions)
-    })    
+  private attachementToFiles(
+    attachements: Collection<string, MessageAttachment>,
+  ): FileOptions[] {
+    const files: FileOptions[] = [];
+    attachements.forEach((messageAttachement) => {
+      files.push({
+        attachment: messageAttachement.url,
+        name: messageAttachement.name,
+      } as FileOptions);
+    });
     return files;
   }
 }
