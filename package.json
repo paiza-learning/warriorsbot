@@ -9,7 +9,7 @@
     "build": "tsc",
     "clean": "rimraf dist/*",
     "watch": "nodemon -L",
-    "lint": "eslint src/*.ts"
+    "lint": "eslint src/**/*.ts"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
