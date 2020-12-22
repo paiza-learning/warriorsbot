@@ -6,7 +6,7 @@ services:
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
-      - /usr/src/app:node_modules
+      - node_modules:/usr/src/app/node_modules
     command: [yarn, watch]
 
 volumes:
