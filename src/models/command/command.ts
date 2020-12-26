@@ -4,24 +4,24 @@
  */
 type SimpleCommand = (args: string[], contentBody: string) => Promise<string>;
 
-export class Command {
+export namespace Command {
   /**
    * コマンドの名前と処理内容の Map
    * register を介して登録する
    */
-  private static simples: Map<string, SimpleCommand> = new Map();
+  const simples = new Map<string, SimpleCommand>();
 
   /**
    * コマンドを登録するインターフェース
    */
-  static register(command: string, exec: SimpleCommand) {
-    this.simples.set(command, exec);
-  }
+  export const register = (command: string, exec: SimpleCommand) => {
+    simples.set(command, exec);
+  };
 
   /**
    * コマンドを検索
    */
-  static lookup(command: string): SimpleCommand | undefined {
-    return this.simples.get(command);
-  }
+  export const lookup = (command: string): SimpleCommand | undefined => {
+    return simples.get(command);
+  };
 }
