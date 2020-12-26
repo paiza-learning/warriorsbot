@@ -10,10 +10,17 @@ export class CommandBot {
    */
   static delegate(msg: Message, callback: (replyContent: string) => void) {
     const spec = this.parse(msg.content);
-    const exec = Command.lookup(spec.command);
 
-    if (exec !== undefined) {
-      exec(spec.args, spec.contentBody).then(callback);
+    const simple = Command.lookup(spec.command);
+    if (simple !== undefined) {
+      simple(spec.args, spec.contentBody).then(callback);
+      return;
+    }
+
+    const custom = Command.Custom.lookup(spec.command);
+    if (custom !== undefined) {
+      custom(msg, spec.args, spec.contentBody);
+      return;
     }
   }
 

@@ -11,7 +11,7 @@ const API_KEY = Constants.paizaIO.API_KEY;
  * args[0] が言語名
  * Discord 上で syntax highlight をしているものへの対応は雑
  */
-Command.register('/paizaIO', async (args: string[], contentBody: string) => {
+Command.register('/paizaIO', async (args, contentBody) => {
   // 気合いで実装されている
   const language = args[0];
   const [, source, input] = contentBody.split(/```.*\n*/);
