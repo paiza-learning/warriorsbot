@@ -1,7 +1,7 @@
 import { TextChannel, Message } from 'discord.js';
 import Constants from '../constants';
 import { Bots } from '../models/bots';
-import { TimeLineWebhookClient } from '../models/webhookClient';
+import { TimeLineWebhookClient } from '../models/WebhookClient';
 
 const DiscordConstants = Constants.Discord;
 const timeLineWebhookClient = new TimeLineWebhookClient();

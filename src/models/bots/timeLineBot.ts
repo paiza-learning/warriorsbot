@@ -1,6 +1,6 @@
 import { Client, Message } from 'discord.js';
 import Debug from 'debug';
-import TimePost from '../../models/time_post';
+import TimePost from '../../models/TimePost';
 
 const debug = Debug('warriors');
 
@@ -18,7 +18,7 @@ export class TimeLineBot {
     const timePost = new TimePost(msg);
     return {
       text: timePost.text,
-      options: timePost.webhookMessageOptions(),
+      options: timePost.webhookOptions(),
     };
   }
 }
