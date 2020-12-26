@@ -10,19 +10,11 @@ export namespace Router {
   export function MessageRouter(msg: Message) {
     const channel = msg.channel as TextChannel;
 
+    // コマンド実行
     if (msg.content.startsWith('/')) {
-      const { command, args, contentBody } = CommandBot.parse(msg.content);
-
-      switch (command) {
-        case '/ping': // Test command
-          msg.reply('pong!');
-          break;
-        case '/paiza':
-          CommandBot.paiza(args, contentBody).then((content) => {
-            msg.reply(content);
-          });
-          break;
-      }
+      CommandBot.delegate(msg, (replyContent) => {
+        msg.reply(replyContent);
+      });
     }
 
     // TODO: times_*に対する処理
