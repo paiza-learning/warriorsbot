@@ -31,8 +31,6 @@ export default class TimePost {
     const channel = msg.channel as TextChannel;
     const linkIconText = channel.topic?.split('\n', 1)[0] || channel.name;
     this.text = `[${linkIconText}](<${msg.url}>) ${msg.content}`;
-
-    if (msg.content.length > 0) this.text += 'だにゃん';
   }
 
   webhookOptions(): WebhookMessageOptions {
