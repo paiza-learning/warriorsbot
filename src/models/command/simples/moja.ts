@@ -1,11 +1,11 @@
 import fetch from 'node-fetch';
 import yaml from 'js-yaml';
 import debug from 'debug';
-import { CommandBot } from '../commandBot';
+import { Command } from '../command';
 
 const mojamojaURL = 'https://www.mojamoja.cloud/api/v1/environment/latest';
 
-CommandBot.register('/moja', async () => {
+Command.register('/moja', async () => {
   return fetch(mojamojaURL, { method: 'GET' })
     .then((res) => res.json())
     .then((data) => {

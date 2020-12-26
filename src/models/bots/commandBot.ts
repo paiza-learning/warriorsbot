@@ -1,25 +1,8 @@
 import { Message } from 'discord.js';
+import { Command } from '../command';
 
-/**
- * コマンド
- * 引数と内容を受け取り, 文字列を返す関数 (ただし async)
- */
-type Command = (args: string[], contentBody: string) => Promise<string>;
 
 export class CommandBot {
-  /**
-   * コマンドの名前と処理内容の Map
-   * register を介して登録する
-   */
-  private static commands: Map<string, Command> = new Map();
-
-  /**
-   * コマンドを登録するインターフェース
-   */
-  static register(command: string, exec: Command) {
-    this.commands.set(command, exec);
-  }
-
   /**
    * (MessageRouter から) CommandBot に処理を移譲する
    * 登録されたコマンドを実行し, callback を実行する
@@ -27,7 +10,7 @@ export class CommandBot {
    */
   static delegate(msg: Message, callback: (replyContent: string) => void) {
     const spec = this.parse(msg.content);
-    const exec = CommandBot.commands.get(spec.command);
+    const exec = Command.lookup(spec.command);
 
     if (exec !== undefined) {
       exec(spec.args, spec.contentBody).then(callback);
