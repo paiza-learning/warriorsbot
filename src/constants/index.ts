@@ -38,6 +38,16 @@ export namespace Constants {
         ? new RegExp(/^times_.+?(?<!_dev)$/)
         : new RegExp(/^times_.+?_dev$/);
   }
+
+  /**
+   * paiza.io 関連の定数
+   */
+  export namespace paizaIO {
+    /**
+     * paiza.io API を利用するための API キー
+     */
+    export const API_KEY = process.env.PAIZAIO_API_KEY || 'guest';
+  }
 }
 
 export default Constants;
