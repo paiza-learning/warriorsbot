@@ -7,6 +7,8 @@
 paiza ラーニングの学生スタッフを主力にゆるーく開発している Discord bot です。  
 paiza ラーニングの学生スタッフ、その他 paiza に関わる人が自由に開発に参加し機能を追加できます。
 
+[開発に参加する](contributing.md)
+
 ## ライセンス
 
 warriorsbotはMITライセンスです。
