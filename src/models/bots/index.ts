@@ -1,1 +1,2 @@
-export * as Bots from './timeLineBot';
+export * from './timeLineBot';
+export * from './commandBot';
