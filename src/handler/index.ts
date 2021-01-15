@@ -1,6 +1,7 @@
 import { Message } from 'discord.js';
 import { TimeLineBot } from '../models/bots';
 import { TimeLineWebhookClient } from '../models/webhookClient';
+import { SlackWebhookClient } from '../models/slackWebhookClient';
 
 export namespace Handler {
   // TODO: 複雑化してきたらnamespaceごとにファイル分割する
@@ -13,5 +14,8 @@ export namespace Handler {
 
     const { text, options } = TimeLineBot.buildTimePost(msg);
     timeLineWebhookClient.postToTimeLine(text, options);
+
+    const slackWebhookOptions = TimeLineBot.buildSlackWebhookOptions(msg);
+    SlackWebhookClient.post(slackWebhookOptions);
   }
 }

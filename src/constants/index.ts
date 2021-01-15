@@ -48,6 +48,10 @@ export namespace Constants {
      */
     export const API_KEY = process.env.PAIZAIO_API_KEY || 'guest';
   }
+
+  export namespace Slack {
+    export const TIMELINE_URL = process.env.SLACK_TIMELINE_URL || '';
+  }
 }
 
 export default Constants;
