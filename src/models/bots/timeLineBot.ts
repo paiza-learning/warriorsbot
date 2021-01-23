@@ -1,4 +1,4 @@
-import { Client, Message } from 'discord.js';
+import { Client, Message, TextChannel } from 'discord.js';
 import Debug from 'debug';
 import TimePost from '../../models/timePost';
 
@@ -31,8 +31,12 @@ export class TimeLineBot {
       return { title: name || undefined, image_url: url };
     });
 
+    const channel = msg.channel as TextChannel;
+    const linkIconText = channel.topic?.split('\n', 1)[0] || channel.name;
+    const text = `<${msg.url}|${linkIconText}> ${msg.content}`;
+
     return {
-      text: msg.cleanContent,
+      text: text,
       as_user: true,
       username: msg.member?.nickname || msg.author.username,
       icon_url: msg.author.displayAvatarURL({ format: 'png' }),
