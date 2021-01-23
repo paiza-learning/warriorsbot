@@ -1,7 +1,6 @@
 import { Message } from 'discord.js';
 import { Command } from '../command';
 
-
 export class CommandBot {
   /**
    * (MessageRouter から) CommandBot に処理を移譲する

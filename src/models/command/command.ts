@@ -12,7 +12,11 @@ type SimpleCommand = (args: string[], contentBody: string) => Promise<string>;
  * コマンドを発火した Message, 引数と内容を受け取り, Promise を返す関数
  * 何らかの事情で凝ったことをしたいときに利用する
  */
-type CustomCommand = (msg: Message, args: string[], contentBody: string) => Promise<void>;
+type CustomCommand = (
+  msg: Message,
+  args: string[],
+  contentBody: string,
+) => Promise<void>;
 
 export namespace Command {
   /**
