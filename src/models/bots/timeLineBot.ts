@@ -33,7 +33,7 @@ export class TimeLineBot {
 
     const channel = msg.channel as TextChannel;
     const linkIconText = channel.topic?.split('\n', 1)[0] || channel.name;
-    const text = `<${msg.url}|${linkIconText}> ${msg.content}`;
+    const text = `<${msg.url}|${linkIconText}> ${msg.cleanContent}`;
 
     return {
       text: text,
