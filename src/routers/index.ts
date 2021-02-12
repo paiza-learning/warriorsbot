@@ -6,7 +6,10 @@ const DiscordConstants = Constants.Discord;
 
 export namespace Router {
   export function MessageRouter(msg: Message) {
-    const channel = msg.channel as TextChannel;
+    const channel = msg.channel;
+    if (!(channel instanceof TextChannel)) {
+      return;
+    }
 
     // tutorial: https://paiza-learning.github.io/warriorsbot/#/tutorial
     if (msg.content.startsWith('/ping')) {
