@@ -29,7 +29,7 @@ export default class HelloCommand extends Command {
     const contentBody = content.substr(firstline.length + 1);
 
     return paizaIO(args, contentBody).then((result: string) => {
-      return msg.reply(result) as Promise<CommandoMessage>;
+      return msg.say(result);
     });
   }
 }
