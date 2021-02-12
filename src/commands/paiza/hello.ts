@@ -9,7 +9,7 @@ export default class HelloCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'hello',
-      group: 'first',
+      group: 'paiza',
       memberName: 'hello',
       description: 'hello',
     } as CommandInfo);
