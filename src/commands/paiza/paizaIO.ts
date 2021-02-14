@@ -28,9 +28,8 @@ export default class HelloCommand extends Command {
     const [, ...args] = firstline.split(' ');
     const contentBody = content.substr(firstline.length + 1);
 
-    return paizaIO(args, contentBody).then((result: string) => {
-      return msg.say(result);
-    });
+    const result = await paizaIO(args, contentBody);
+    return msg.say(result);
   }
 }
 
@@ -45,7 +44,7 @@ async function paizaIO(args: string[], contentBody: string): Promise<string> {
   const [, source, input] = contentBody.split(/```.*\n*/);
 
   const res1 = await fetch(
-    `http://api.paiza.io:80/runners/create?api_key=${API_KEY}`,
+    `https://api.paiza.io/runners/create?api_key=${API_KEY}`,
     {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
@@ -68,7 +67,7 @@ async function paizaIO(args: string[], contentBody: string): Promise<string> {
   }
 
   const res2 = await fetch(
-    `http://api.paiza.io:80/runners/get_details?api_key=${API_KEY}&id=${data1.id}`,
+    `https://api.paiza.io/runners/get_details?api_key=${API_KEY}&id=${data1.id}`,
     { method: 'GET' },
   );
 
