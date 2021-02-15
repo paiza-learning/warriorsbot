@@ -22,14 +22,17 @@ export default class PaizaIOCommand extends Command {
     } as CommandInfo);
   }
 
-  async run(msg: CommandoMessage): Promise<CommandoMessage> {
+  async run(msg: CommandoMessage): Promise<null> {
     const content = msg.content;
     const firstline = content.split('\n', 1)[0];
     const [, ...args] = firstline.split(' ');
     const contentBody = content.substr(firstline.length + 1);
 
-    const result = await paizaIO(args, contentBody);
-    return msg.say(result);
+    const result = await runCode(args, contentBody);
+
+    msg.reply(result);
+
+    return null;
   }
 }
 
@@ -38,12 +41,14 @@ export default class PaizaIOCommand extends Command {
  * args[0] が言語名
  * Discord 上で syntax highlight をしているものへの対応は雑
  */
-async function paizaIO(args: string[], contentBody: string): Promise<string> {
+async function runCode(args: string[], contentBody: string): Promise<string> {
   // 気合いで実装されている
   const language = args[0];
   const [, source, input] = contentBody.split(/```.*\n*/);
 
-  const res1 = await fetch(
+  // 実行の流れとして
+  // runners/create -> 待機 -> runners/get_details
+  const runnersCreateResponse = await fetch(
     `https://api.paiza.io/runners/create?api_key=${API_KEY}`,
     {
       method: 'POST',
@@ -56,44 +61,47 @@ async function paizaIO(args: string[], contentBody: string): Promise<string> {
         longpoll_timeout: 100,
       }),
     },
-  );
+  ).then((res) => {
+    return res.json();
+  });
 
-  const data1 = await res1.json();
   debug('paiza: runner created');
-  debug(data1);
+  debug(runnersCreateResponse);
 
-  if (data1.error !== undefined) {
-    return data1.error;
+  if (runnersCreateResponse.error !== undefined) {
+    return runnersCreateResponse.error;
   }
 
-  const res2 = await fetch(
-    `https://api.paiza.io/runners/get_details?api_key=${API_KEY}&id=${data1.id}`,
+  // 個別に関数として切り出すべきかもしれない
+  const runnersGetDetailsResponse = await fetch(
+    `https://api.paiza.io/runners/get_details?api_key=${API_KEY}&id=${runnersCreateResponse.id}`,
     { method: 'GET' },
-  );
-
-  const data2 = await res2.json();
+  ).then((res) => {
+    return res.json();
+  });
 
   debug('paiza: runner get details');
-  debug(data2);
+  debug(runnersGetDetailsResponse);
 
-  if (data2.error !== undefined) {
-    return data1.error;
+  if (runnersGetDetailsResponse.error !== undefined) {
+    return runnersGetDetailsResponse.error;
   }
 
+  // なるべく多くの情報を得たい人向け
   if (args.includes('--detail')) {
     const replyData = {
-      stdout: data2.stdout,
-      stderr: data2.stderr,
-      build_stdout: data2.build_stdout,
-      build_stderr: data2.build_stderr,
-      time: data2.time,
-      memory: data2.memory,
-      build_time: data2.build_time,
-      build_memory: data2.build_memory,
+      stdout: runnersGetDetailsResponse.stdout,
+      stderr: runnersGetDetailsResponse.stderr,
+      build_stdout: runnersGetDetailsResponse.build_stdout,
+      build_stderr: runnersGetDetailsResponse.build_stderr,
+      time: runnersGetDetailsResponse.time,
+      memory: runnersGetDetailsResponse.memory,
+      build_time: runnersGetDetailsResponse.build_time,
+      build_memory: runnersGetDetailsResponse.build_memory,
     };
 
     return '```yaml\n' + yaml.dump(replyData) + '```';
   }
 
-  return data2.stdout;
+  return runnersGetDetailsResponse.stdout;
 }
