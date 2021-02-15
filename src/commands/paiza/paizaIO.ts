@@ -12,7 +12,7 @@ import Constants from '../../constants';
 
 const API_KEY = Constants.paizaIO.API_KEY;
 
-export default class HelloCommand extends Command {
+export default class PaizaIOCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'paizaio',

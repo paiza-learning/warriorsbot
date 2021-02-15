@@ -11,7 +11,7 @@ import debug from 'debug';
 
 const mojamojaURL = 'https://www.mojamoja.cloud/api/v1/environment/latest';
 
-export default class HelloCommand extends Command {
+export default class MojaCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'moja',

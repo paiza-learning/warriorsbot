@@ -9,7 +9,7 @@ interface ReactMeArgument {
   emoji: string;
 }
 
-export default class HelloCommand extends Command {
+export default class ReactMeCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'reactme',
