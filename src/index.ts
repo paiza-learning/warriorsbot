@@ -18,7 +18,9 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([['paiza', 'Commands created by paiza-learning team.']])
   .registerDefaultGroups()
-  .registerDefaultCommands()
+  .registerDefaultCommands({
+    ping: false, // `/ping` は他の実装と衝突するので disable
+  })
   .registerCommandsIn(path.join(__dirname, 'commands'));
 
 client.on('ready', () => {
