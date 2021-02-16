@@ -213,6 +213,7 @@ export default class HelpCommand extends Command {
       description:
         'Shows a list of available commands, or detailed information for a specified command.',
       details: `The command may be part of a command name or a whole command name. If it isn't specified, all available commands will be listed.`,
+      examples: ['help', 'help hello'],
       guarded: true,
       args: [
         {
@@ -242,7 +243,7 @@ export default class HelpCommand extends Command {
 
         help += `\n\n**Format:** `;
         help += msg.anyUsage(
-          commands[0].name + commands[0].format ? commands[0].format : '',
+          commands[0].name + (commands[0].format ? commands[0].format : ''),
         );
 
         if (commands[0].aliases.length > 0)
