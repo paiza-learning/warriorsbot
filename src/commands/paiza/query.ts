@@ -18,7 +18,7 @@ interface QueryCommandArgs {
   sql: string;
 }
 
-export default class HelloCommand extends Command {
+export default class QueryCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'query',
