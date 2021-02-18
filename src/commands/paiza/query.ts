@@ -15,7 +15,7 @@ import Constants from '../../constants';
 const API_KEY = Constants.paizaIO.API_KEY;
 
 interface QueryCommandArgs {
-  query: string;
+  sql: string;
 }
 
 export default class HelloCommand extends Command {
@@ -28,7 +28,7 @@ export default class HelloCommand extends Command {
       args: [
         {
           key: 'sql',
-          prompt: 'query',
+          prompt: 'sql',
           type: 'string'
         }
       ]
@@ -41,7 +41,7 @@ export default class HelloCommand extends Command {
     }
     
     const manager = getManager();
-    const response: {string: string}[] = await manager.query(args.query);
+    const response: {string: string}[] = await manager.query(args.sql);
     
     const output = formatResponse(response);
     
