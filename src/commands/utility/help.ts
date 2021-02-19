@@ -270,7 +270,7 @@ export default class HelpCommand extends Command {
     } else {
       let content = `
 To run a command in ${msg.guild.name}, use \`/command\`.
-For example, \`/prefix\`.
+For example, \`/help\`.
 
 Use \`/help <command>\` to view detailed information about a specific command.
 Use \`/help all\`  to view a list of *all* commands, not just available ones.
