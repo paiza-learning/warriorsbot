@@ -10,9 +10,6 @@ import {
 } from 'discord.js';
 
 import { getManager } from 'typeorm';
-import Constants from '../../constants';
-
-const API_KEY = Constants.paizaIO.API_KEY;
 
 interface QueryCommandArgs {
   sql: string;
@@ -70,7 +67,7 @@ function formatResponse(response: {string: string}[]): string {
   for (const [i, r] of Object.entries(responseByColumn)) {
     maxlen[i] = i.length;
     for (const v of r) {
-      maxlen[i] = Math.max(maxlen[i], (new String(v)).length);
+      maxlen[i] = Math.max(maxlen[i], String(v).length);
     }
   }
   
@@ -90,7 +87,7 @@ function formatResponse(response: {string: string}[]): string {
   for (const r of response) {
     const row = [];
     for (const [k, v] of Object.entries(r)) {
-      const sv = new String(v);
+      const sv = String(v);
       row.push(sv + ' '.repeat(maxlen[k] - sv.length));
     }
     output += row.join(' | ') + '\n';
