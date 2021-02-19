@@ -15,4 +15,10 @@ export default {
     migrationsDir: 'db/migrations',
     subscribersDir: 'src/subscribers',
   },
+  ssl: true,
+  extra: {
+    ssl: {
+      rejectUnauthorized: false,
+    },
+  },
 };
