@@ -21,12 +21,9 @@ client.registry
   .registerDefaultTypes()
   .registerGroups([
     ['paiza', 'Commands created by paiza-learning team.'],
+    ['utility', 'Utility commands.'],
     ['todo', 'Manage your todo list'],
   ])
-  .registerDefaultGroups()
-  .registerDefaultCommands({
-    ping: false, // `/ping` は他の実装と衝突するので disable
-  })
   .registerCommandsIn({
     filter: /^([^.].*)\.(js|ts)$/,
     dirname: path.join(__dirname, 'commands'),
