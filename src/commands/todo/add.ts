@@ -14,9 +14,9 @@ interface TodoCommandArgs {
 export default class TodoAddCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
-      name: 'todo_add',
-      group: 'paiza',
-      memberName: 'todo_add',
+      name: 'todo:add',
+      group: 'todo',
+      memberName: 'add',
       description: '忘れないで あの日の思い出',
       args: [
         {

@@ -14,9 +14,9 @@ interface TodoListCommandArgs {
 export default class TodoListCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
-      name: 'todo_list',
-      group: 'paiza',
-      memberName: 'todo_list',
+      name: 'todo:list',
+      group: 'todo',
+      memberName: 'list',
       description: 'そう 僕は気づいたんだ そう 僕は気づいた',
       args: [
         {

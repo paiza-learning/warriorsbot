@@ -20,6 +20,7 @@ const client = new Client({
 client.registry
   .registerDefaultTypes()
   .registerGroups([['paiza', 'Commands created by paiza-learning team.']])
+  .registerGroups([['todo', 'Manage your todo list']])
   .registerDefaultGroups()
   .registerDefaultCommands({
     ping: false, // `/ping` は他の実装と衝突するので disable

@@ -13,9 +13,9 @@ interface TodoDelCommandArgs {
 export default class TodoDelCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
-      name: 'todo_del',
-      group: 'paiza',
-      memberName: 'todo_del',
+      name: 'todo:del',
+      group: 'todo',
+      memberName: 'del',
       description: '今日の日は さようなら また会う日まで',
       args: [
         {
