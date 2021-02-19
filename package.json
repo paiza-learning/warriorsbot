@@ -10,7 +10,7 @@
     "clean": "echo '[!] this command is deprecated' && rimraf dist/*",
     "watch": "nodemon -L",
     "lint": "eslint src/**/*.ts",
-    "typeorm": "ts-node ./node_modules/.bin/typeorm --config ormconfig.ts"
+    "typeorm": "ts-node -T ./node_modules/.bin/typeorm --config ormconfig.ts"
   },
   "devDependencies": {
     "@types/debug": "^4.1.5",
