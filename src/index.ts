@@ -19,11 +19,11 @@ const client = new Client({
 
 client.registry
   .registerDefaultTypes()
-  .registerGroups([['paiza', 'Commands created by paiza-learning team.']])
-  .registerDefaultGroups()
-  .registerDefaultCommands({
-    ping: false, // `/ping` は他の実装と衝突するので disable
-  })
+  .registerGroups([
+    ['paiza', 'Commands created by paiza-learning team.'],
+    ['utility', 'Utility commands.'],
+    ['todo', 'Manage your todo list'],
+  ])
   .registerCommandsIn({
     filter: /^([^.].*)\.(js|ts)$/,
     dirname: path.join(__dirname, 'commands'),

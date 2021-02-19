@@ -10,7 +10,4 @@ export class Todo extends BaseEntity {
 
   @Column()
   title!: string;
-
-  @Column()
-  description?: string;
 }
