@@ -1,3 +1,7 @@
 build:
   docker:
     worker: Dockerfile
+release:
+  image: worker
+  command:
+    - yarn typeorm migration:run
