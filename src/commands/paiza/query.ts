@@ -33,10 +33,6 @@ export default class QueryCommand extends Command {
   }
   
   async run(msg: CommandoMessage, args: QueryCommandArgs): Promise<CommandoMessage> {
-    if (process.env.NODE_ENV === 'production') {
-      return msg.say('[!] this command is not available in the production environment.');
-    }
-    
     const manager = getManager();
     const response: {string: string}[] = await manager.query(args.sql);
     
