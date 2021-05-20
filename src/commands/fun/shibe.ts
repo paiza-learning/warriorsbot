@@ -4,11 +4,8 @@ import {
   CommandoClient,
   CommandoMessage,
 } from 'discord.js-commando';
-  
-import { 
-  Message,
-  MessageAttachment,
-} from 'discord.js';
+
+import { Message, MessageAttachment } from 'discord.js';
 
 import fetch from 'node-fetch';
 import debug from 'debug';
@@ -19,7 +16,7 @@ export default class ShibeCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'shibe',
-      group: 'paiza',
+      group: 'fun',
       memberName: 'shibe',
       description: 'わんこの画像が見れるわん',
     } as CommandInfo);
