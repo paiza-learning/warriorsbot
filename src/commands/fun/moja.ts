@@ -15,7 +15,7 @@ export default class MojaCommand extends Command {
   constructor(client: CommandoClient) {
     super(client, {
       name: 'moja',
-      group: 'paiza',
+      group: 'fun',
       memberName: 'moja',
       description: 's10akir の自室の環境情報を得ることができます.',
     } as CommandInfo);
