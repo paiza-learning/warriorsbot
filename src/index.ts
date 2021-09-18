@@ -23,6 +23,7 @@ client.registry
     ['paiza', 'Commands created by paiza-learning team.'],
     ['utility', 'Utility commands.'],
     ['todo', 'Manage your todo list'],
+    ['fun', 'Make your days more fun!'],
   ])
   .registerCommandsIn({
     filter: /^([^.].*)\.(js|ts)$/,
