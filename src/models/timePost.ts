@@ -20,7 +20,7 @@ export default class TimePost {
     this.author = {
       id: msg.author.id,
       username: msg.member?.nickname || msg.author.username,
-      iconURL: msg.author.displayAvatarURL(),
+      iconURL: msg.member?.displayAvatarURL() || msg.author.displayAvatarURL(),
     };
 
     // Attachments -> FileOptions の変換

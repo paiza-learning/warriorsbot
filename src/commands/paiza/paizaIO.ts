@@ -1,9 +1,4 @@
-import {
-  Command,
-  CommandInfo,
-  CommandoClient,
-  CommandoMessage,
-} from 'discord.js-commando';
+import { Command } from '../../models/command';
 
 import fetch from 'node-fetch';
 import yaml from 'js-yaml';
@@ -11,30 +6,6 @@ import debug from 'debug';
 import Constants from '../../constants';
 
 const API_KEY = Constants.paizaIO.API_KEY;
-
-export default class PaizaIOCommand extends Command {
-  constructor(client: CommandoClient) {
-    super(client, {
-      name: 'paizaio',
-      group: 'paiza',
-      memberName: 'paizaio',
-      description: 'paiza.io の API を利用して, コードを実行します.',
-    } as CommandInfo);
-  }
-
-  async run(msg: CommandoMessage): Promise<null> {
-    const content = msg.content;
-    const firstline = content.split('\n', 1)[0];
-    const [, ...args] = firstline.split(' ');
-    const contentBody = content.substr(firstline.length + 1);
-
-    const result = await runCode(args, contentBody);
-
-    msg.reply(result);
-
-    return null;
-  }
-}
 
 /**
  * paiza.io API を叩いて contentBody に渡されたコードを実行してもらう
@@ -105,3 +76,15 @@ async function runCode(args: string[], contentBody: string): Promise<string> {
 
   return runnersGetDetailsResponse.stdout;
 }
+
+Command.register('paizaio', {
+  desc: 'paiza.io の API を利用して、与えられたコードを実行します。',
+  exec: async (args, contentBody, msg) => {
+    msg.reply(await runCode(args, contentBody));
+  },
+  help: `usage: paizaio <language> [--detail]
+\\\`\\\`\\\`
+// your code here
+\\\`\\\`\\\`
+<stdin-string>`,
+});
