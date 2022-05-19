@@ -16,7 +16,6 @@ export class CommandBot {
     if (command === undefined) return;
 
     command.exec(args, body, msg).then((res) => {
-      console.log('callback');
       if (typeof res === 'string') return callback(res);
     });
   }
