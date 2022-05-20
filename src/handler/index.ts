@@ -1,7 +1,7 @@
 import { Message } from 'discord.js';
 import { TimeLineBot } from '../models/bots';
-import { TimeLineWebhookClient } from '../models/webhookClient';
-import { SlackWebhookClient } from '../models/slackWebhookClient';
+import { TimeLineWebhookClient } from '../models/webhook-client';
+import { SlackWebhookClient } from '../models/slack-webhook-client';
 
 export namespace Handler {
   // TODO: 複雑化してきたらnamespaceごとにファイル分割する

@@ -1,6 +1,6 @@
 import { Client, Message, TextChannel } from 'discord.js';
 import Debug from 'debug';
-import TimePost from '../../models/timePost';
+import TimePost from '../../models/time-post';
 
 const debug = Debug('warriors');
 
