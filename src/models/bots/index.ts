@@ -1,1 +1,1 @@
-export * from './timeLineBot';
+export * from './time-line-bot';
