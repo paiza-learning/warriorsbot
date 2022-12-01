@@ -2,12 +2,17 @@ version: '3'
 services:
   warrior:
     container_name: warrior
-    image: node:17
+    image: node:18
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
-    command: [yarn, watch]
+    command:
+      - /bin/bash
+      - -c
+      - |
+        yarn
+        yarn watch
   db:
     image: postgres:latest
     ports:
