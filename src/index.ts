@@ -1,6 +1,6 @@
 import { Client, Intents } from 'discord.js';
 import Debug from 'debug';
-import { createConnection } from 'typeorm';
+// import { createConnection } from 'typeorm';
 
 import { Constants } from './constants';
 import { Router } from './routers';
@@ -8,7 +8,7 @@ import { Router } from './routers';
 const debug = Debug('warriors');
 debug('warriors debug mode on.');
 
-createConnection();
+// createConnection();
 
 const DiscordConstants = Constants.Discord;
 

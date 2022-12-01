@@ -13,18 +13,18 @@ services:
       - |
         yarn
         yarn watch
-  db:
-    image: postgres:latest
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./db/initdb:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=paiza
-      - POSTGRES_PASSWORD=learning
-      - POSTGRES_DB=warriors
+  # db:
+  #   image: postgres:latest
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
+  #     - ./db/initdb:/docker-entrypoint-initdb.d
+  #   environment:
+  #     - POSTGRES_USER=paiza
+  #     - POSTGRES_PASSWORD=learning
+  #     - POSTGRES_DB=warriors
 
 volumes:
   node_modules:
-  postgres:
+  # postgres:
