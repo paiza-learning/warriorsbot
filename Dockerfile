@@ -1,4 +1,4 @@
-FROM node:14 as production
+FROM node:17 as production
 
 ENV NODE_ENV=production
 WORKDIR /usr/src/app

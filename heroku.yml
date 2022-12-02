@@ -3,5 +3,5 @@ build:
     worker: Dockerfile
 release:
   image: worker
-  command:
-    - yarn typeorm migration:run
+  # command:
+  #   - yarn typeorm migration:run

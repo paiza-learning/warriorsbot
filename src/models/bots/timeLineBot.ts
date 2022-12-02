@@ -39,7 +39,9 @@ export class TimeLineBot {
       text: text,
       as_user: true,
       username: msg.member?.nickname || msg.author.username,
-      icon_url: msg.author.displayAvatarURL({ format: 'png' }),
+      icon_url:
+        msg.member?.displayAvatarURL({ format: 'png' }) ||
+        msg.author.displayAvatarURL({ format: 'png' }),
       attachments: images,
     };
   }

@@ -1,56 +1,25 @@
-import {
-  Command,
-  CommandInfo,
-  CommandoClient,
-  CommandoMessage,
-} from 'discord.js-commando';
-
-import { MessageAttachment } from 'discord.js';
-
+import { Command } from '../../models/command';
+import { MessageAttachment, Message } from 'discord.js';
 import { getManager } from 'typeorm';
 
-interface QueryCommandArgs {
-  sql: string;
-}
+async function run(args: string[], _: string, msg: Message) {
+  const manager = getManager();
+  const response: { string: string }[] = await manager.query(args.join(' '));
 
-export default class QueryCommand extends Command {
-  constructor(client: CommandoClient) {
-    super(client, {
-      name: 'query',
-      group: 'utility',
-      memberName: 'query',
-      description: 'DB 上で任意の SQL を実行し, 結果を返します.',
-      args: [
-        {
-          key: 'sql',
-          prompt: 'sql',
-          type: 'string',
-        },
-      ],
-    } as CommandInfo);
+  const output = formatResponse(response);
+
+  // Discord の文字数上限が 2000 文字なので 1994 文字以下ならテキストで返す
+  if (output.length <= 1994) {
+    msg.reply('```' + output + '```');
+    return;
   }
 
-  async run(
-    msg: CommandoMessage,
-    args: QueryCommandArgs,
-  ): Promise<CommandoMessage> {
-    const manager = getManager();
-    const response: { string: string }[] = await manager.query(args.sql);
+  const attach = new MessageAttachment(
+    Buffer.from(output),
+    'output-' + msg.id + '.txt',
+  );
 
-    const output = formatResponse(response);
-
-    // Discord の文字数上限が 2000 文字なので 1994 文字以下ならテキストで返す
-    if (output.length <= 1994) {
-      return msg.say('```' + output + '```');
-    }
-
-    const attach = new MessageAttachment(
-      Buffer.from(output),
-      'output-' + msg.id + '.txt',
-    );
-
-    return msg.say('length limit exceeded', attach);
-  }
+  msg.reply({ content: 'length limit exceeded', files: [attach] });
 }
 
 function formatResponse(response: { string: string }[]): string {
@@ -95,3 +64,9 @@ function formatResponse(response: { string: string }[]): string {
 
   return output;
 }
+
+Command.register('query', {
+  desc: 'DB 上で任意の SQL を実行し, 結果を返します.',
+  exec: run,
+  help: 'DB 上で任意の SQL を実行し, 結果を返します.',
+});
