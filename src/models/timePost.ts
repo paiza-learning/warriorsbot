@@ -35,7 +35,7 @@ export default class TimePost {
 
   webhookOptions(): WebhookMessageOptions {
     const ops = {
-      username: `${this.author.username} (Impersonator)`,
+      username: `${this.author.username} (集約)`,
       avatarURL: this.author.iconURL,
       files: this.files,
     };
