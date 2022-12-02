@@ -2,24 +2,29 @@ version: '3'
 services:
   warrior:
     container_name: warrior
-    image: node:12
+    image: node:18
     working_dir: /usr/src/app
     volumes:
       - ./:/usr/src/app
       - node_modules:/usr/src/app/node_modules
-    command: [yarn, watch]
-  db:
-    image: postgres:latest
-    ports:
-      - 5432:5432
-    volumes:
-      - postgres:/var/lib/postgresql/data
-      - ./db/initdb:/docker-entrypoint-initdb.d
-    environment:
-      - POSTGRES_USER=paiza
-      - POSTGRES_PASSWORD=learning
-      - POSTGRES_DB=warriors
+    command:
+      - /bin/bash
+      - -c
+      - |
+        yarn
+        yarn watch
+  # db:
+  #   image: postgres:latest
+  #   ports:
+  #     - 5432:5432
+  #   volumes:
+  #     - postgres:/var/lib/postgresql/data
+  #     - ./db/initdb:/docker-entrypoint-initdb.d
+  #   environment:
+  #     - POSTGRES_USER=paiza
+  #     - POSTGRES_PASSWORD=learning
+  #     - POSTGRES_DB=warriors
 
 volumes:
   node_modules:
-  postgres:
+  # postgres:
