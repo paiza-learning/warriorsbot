@@ -6,6 +6,3 @@ import './paiza/paizaIO';
 import './paiza/reactme';
 
 import './utility/help';
-// import './utility/query';
-
-// import './todo';
